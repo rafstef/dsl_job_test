@@ -5,11 +5,36 @@ import jenkins.model.GlobalConfiguration
 GlobalConfiguration.all().get(GlobalJobDslSecurityConfiguration.class).useScriptSecurity=false
 GlobalConfiguration.all().get(GlobalJobDslSecurityConfiguration.class).save()
 
-node {
+
+pipeline {
+
+    stages {
+        stage('Build') {
+            steps {
+    
+
     jobDsl scriptText: 'job("CreateFolders")'
 
     jobDsl targets: ['folders.groovy'].join('\n'),
            removedJobAction: 'DELETE',
            removedViewAction: 'DELETE',
            lookupStrategy: 'SEED_JOB'
+
+        }
+    }
+   }
+post {
+        // Clean after build
+        always {
+            cleanWs(cleanWhenNotBuilt: false,
+                    deleteDirs: true,
+                    disableDeferredWipeout: true,
+                    notFailBuild: true,
+                    patterns: [[pattern: '.gitignore', type: 'INCLUDE'],
+                               [pattern: '.propsfile', type: 'EXCLUDE']])
+        }
+    }
 }
+
+
+
