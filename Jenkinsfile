@@ -1,14 +1,9 @@
-timestamps {
-    node {
-        stage('Checkout') {
-            checkout scm
-        }
+node {
+    jobDsl scriptText: 'job("example-2")'
 
-        if (BRANCH_NAME == 'master') {
-            stage('Build') {
-                jobDsl(removedJobAction: 'DELETE', removedViewAction: 'DELETE',
-                        targets: 'folders.groovy', unstableOnDeprecation: true)
-            }
-        }
-    }
+    jobDsl targets: ['folders.groovy', 'jobs/common.groovy'].join('\n'),
+           removedJobAction: 'DELETE',
+           removedViewAction: 'DELETE',
+           lookupStrategy: 'SEED_JOB',
+           additionalParameters: [message: 'Hello from pipeline', credentials: 'SECRET']
 }
