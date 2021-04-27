@@ -6,7 +6,7 @@ timestamps {
 
         if (BRANCH_NAME == 'master') {
             stage('Build') {
-                jobDsl(additionalClasspath:  removedJobAction: 'DELETE', removedViewAction: 'DELETE',
+                jobDsl(removedJobAction: 'DELETE', removedViewAction: 'DELETE',
                         targets: 'folders.groovy', unstableOnDeprecation: true)
             }
         }
