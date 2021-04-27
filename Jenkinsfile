@@ -1,7 +1,7 @@
 node {
-    jobDsl scriptText: 'job("example-2")'
+    jobDsl scriptText: 'job("CreateFolders")'
 
-    jobDsl targets: ['Groovy/*.groovy', 'jobs/common.groovy'].join('\n'),
+    jobDsl targets: ['folders.groovy', 'jobs/common.groovy'].join('\n'),
            removedJobAction: 'DELETE',
            removedViewAction: 'DELETE',
            lookupStrategy: 'SEED_JOB'
