@@ -1,8 +1,8 @@
 node {
     jobDsl scriptText: 'job("example-2")'
 
-    jobDsl targets: ['folders.groovy'].join('\n'),
+    jobDsl targets: 'folders.groovy',
            removedJobAction: 'DELETE',
            removedViewAction: 'DELETE',
-           lookupStrategy: 'SEED_JOB']
+           lookupStrategy: 'SEED_JOB'
 }
