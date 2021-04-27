@@ -1,4 +1,4 @@
-folder('App1/Deployments'){
+folder('Deployments'){
   displayName('Deployments')
   description('testDeployment')
 }
