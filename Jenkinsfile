@@ -1,5 +1,5 @@
+def folders = readFileFromWorkspace('folders.groovy')
 pipeline {
-  def folders = readFileFromWorkspace('folders.groovy')
   agent any
   stages {
     stage('Create Folders') {
