@@ -7,7 +7,7 @@ GlobalConfiguration.all().get(GlobalJobDslSecurityConfiguration.class).save()
 
 
 pipeline {
-
+    agent any
     stages {
         stage('Build') {
             steps {
